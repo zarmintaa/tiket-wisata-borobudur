@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <%- include("partials/head.ejs") %>
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!-- Navbar -->
+      <%- include("components/navbar.ejs") %>
+      <!-- Navbar -->
+
+      <!-- Background image -->
+      <div class="container position-relative my-lg-3" style="height: 700px">
+        <div
+          id="intro-example"
+          class="bg-image rounded-5"
+          style="
+            background-image: url('./images/banner.png');
+            width: 100%;
+            height: 600px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+          "
+        ></div>
+        <!-- Background image -->
+        <div
+          class="position-absolute card text-center"
+          style="
+            width: 100%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            width: 70%;
+            margin: auto;
+          "
+        >
+          <div class="shadow-lg">
+            <form class="text-black" action="/order" method="POST">
+              <h4 class="mt-3 mb-2">Pilih tiket sekarang!</h4>
+              <h5 class="mb-4">
+                Pilih tujuan Candi, hari dan jam kunjungan anda !
+              </h5>
+              <div
+                class="row text-start border border-dark mx-4 rounded-2 pt-2 pb-2"
+              >
+                <div class="col-4">
+                  <span>Candi</span>
+                  <select
+                    class="form-select form-select-sm mt-2"
+                    aria-label=".form-select-sm example"
+                    name="candi"
+                  >
+                    <option selected>Pilih Candi</option>
+                    <option value="1">Borobudur</option>
+                    <option value="2">Mendut</option>
+                    <option value="3">Pawon</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <span class="py-2">Tanggal</span>
+                  <div class="input-group date" id="datepicker">
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="hari"
+                      aria-label="date"
+                      format="dd/mm/yyyy"
+                      id="date"
+                    />
+                    <span class="input-group-append"> </span>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <span class="py-2">Jam</span>
+                  <select
+                    class="form-select form-select-sm mt-2"
+                    aria-label=".form-select-sm example"
+                    name="jam"
+                  >
+                    <option selected>Pilih jam</option>
+                    <option value="08.00 - 11.00">Pukul 08.00 - 11.00</option>
+                    <option value="08.00 - 11.00">Pukul 13.00 - 17.00</option>
+                  </select>
+                </div>
+              </div>
+              <div class="text-center my-2">
+                <button type="submit" class="btn btn-primary">Pesan</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="container my-lg-5">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card shadow-lg text-md-center">
+              <div class="card-body">
+                <img src="./images/logo candi.png" class="mb-2" alt="" />
+                <h5 class="card-title">Pilih Destinasi Candi</h5>
+                <small class="card-text text-black-50">
+                  Pilih destinasi candi yang diinginkan, lalu pilih hari dan jam
+                  kunjungan
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card shadow-lg text-md-center">
+              <div class="card-body">
+                <img src="./images/logo form.png" class="mb-2" alt="" />
+                <h5 class="card-title">Isi Form Pemesan</h5>
+                <small class="card-text text-black-50">
+                  Isi form pemesanan tiket wisata candi dan baca syarat dan
+                  ketentuan yang berlaku.
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card shadow-lg text-md-center">
+              <div class="card-body">
+                <img src="./images/logo tiket.png" class="mb-2" alt="" />
+                <h5 class="card-title">Unduh Tiket</h5>
+                <small class="card-text text-black-50"
+                  >Unduh tiket untuk ditunjukkan dan di scan oleh petugas loket
+                  saat hari kunjungan</small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-lg-5" style="background-color: #f3f2f0">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 d-grid gap-1 my-4">
+              <h3>Tentang kami</h3>
+              <p>
+                Aplikasi Tiket Wisata Kawasan Borobudur hadir sebagai solusi
+                bagi masyarakat untuk menikmati obyek wisata Candi yang
+                berkawasan di Borobudur dengan kemudahan informasi pemesanan
+                tiket berbasis online.
+              </p>
+            </div>
+            <div class="col-lg-4"></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <%- include("partials/foot.ejs") %>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <%- include("partials/head.ejs") %>
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!-- Navbar -->
+      <%- include("components/navbar.ejs") %>
+      <!-- Navbar -->
+
+      <!-- Background image -->
+
+      <div class="container shadow-lg p-4 my-lg-5 rounded-2">
+        <div class="col-8">
+          <h4 class="text-primary fw-semi">Form Feedback</h4>
+
+          <span class="text-lg-start">
+            Isi form di bawah ini dengan sebenar-benarnya! Feedback akan dibalas
+            paling lambat 3x24 jam via email apabila mengandung keterangan yang
+            jelas.</span
+          >
+        </div>
+
+        <form class="my-lg-4" action="/create-feedback" method="POST">
+          <div class="row mb-3">
+            <div class="col">
+              <label for="exampleInputEmail1" class="form-label"
+                >Nama Lengkap</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div class="col">
+              <label for="exampleInputPassword1" class="form-label"
+                >Kategori<span class="text-danger">*</span></label
+              >
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                name="category"
+              >
+                <option selected>Kategori Pertanyaan</option>
+                <option value="Keluhan">Keluhan</option>
+                <option value="Saran">Saran</option>
+                <option value="Lupa Tiket">Lupa Tiket</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="exampleInputEmail1" class="form-label"
+                >No. Handphone<span class="text-danger">*</span></label
+              >
+              <input
+                type="tel"
+                name="phone"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div class="col">
+              <label for="exampleInputEmail1" class="form-label"
+                >Email<span class="text-danger">*</span></label
+              >
+              <input
+                type="email"
+                name="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label"
+              >Feedback<span class="text-danger">*</span></label
+            >
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              name="feedback"
+              rows="3"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+
+      <footer class="mt-lg-5" style="background-color: #f3f2f0; width: 100%">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 d-grid gap-1 my-4">
+              <h3>Tentang kami</h3>
+              <p>
+                Aplikasi Tiket Wisata Kawasan Borobudur hadir sebagai solusi
+                bagi masyarakat untuk menikmati obyek wisata Candi yang
+                berkawasan di Borobudur dengan kemudahan informasi pemesanan
+                tiket berbasis online.
+              </p>
+            </div>
+            <div class="col-lg-4"></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <%- include("partials/foot.ejs") %>
+  </body>
+</html>

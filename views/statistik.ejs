@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <%- include("./partials/head.ejs") %>
+  </head>
+  <body>
+    <%- include("./components/navbar.ejs") %>
+
+    <main class="container-sm my-5">
+      <canvas></canvas>
+    </main>
+
+    <%- include("./partials/foot.ejs") %>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
+      integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      const canvas = document.querySelector("canvas");
+      const ctx = canvas.getContext("2d");
+
+      const filterDate = (date) => {
+        return new Date(date).toLocaleString("id", { month: "long" });
+      };
+
+      function displayChart(count) {
+        const data = {
+          labels: ["Candi Borobudur", "Candi Mendut", "Candi Pawon"],
+          datasets: [
+            {
+              label: "Data Orderan Berdasarkan Candi",
+              fill: false,
+              lineTension: 0.1,
+              backgroundColor: "#302b63",
+              borderColor: "rgba(75,192,192,1)",
+              borderCapStyle: "butt",
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: "miter",
+              pointBorderColor: "rgba(75,192,192,1)",
+              pointBackgroundColor: "#fff",
+              pointBorderWidth: 1,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: "rgba(75,192,192,1)",
+              pointHoverBorderColor: "rgba(220,220,220,1)",
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              data: count,
+              spanGaps: false,
+            },
+          ],
+        };
+
+        const options = {
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
+        };
+        return new Chart(ctx, {
+          type: "bar",
+          data: data,
+          options: options,
+        });
+      }
+
+      const getData = async () => {
+        try {
+          const finishConvertedDate = [];
+          const res = await fetch("/api/transactions");
+          const data = await res.json();
+          const currentData = data.data;
+
+          console.log(currentData);
+          displayChart(currentData);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      window.addEventListener("DOMContentLoaded", () => {
+        getData();
+      });
+    </script>
+  </body>
+</html>

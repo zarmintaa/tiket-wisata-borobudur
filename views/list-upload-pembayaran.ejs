@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Error</title>
+    <%- include("partials/head.ejs") %>
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include("components/navbar.ejs") %>
+    <main class="container my-5">
+      <% if (transactions.length === 0) { %>
+      <div class="text-center my-2">
+        <button class="btn btn-primary">Belum ada pesanan masuk</button>
+      </div>
+      <% } else { %>
+      <div class="row">
+        <% transactions.map(transaction => { %>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card shadow">
+            <div class="image-container">
+              <img src="<%= transaction.image %> " class="img-fluid" alt="" />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title fw-bold"><%= transaction.name %></h5>
+              <h6 class="card-subtitle mb-2 text-muted fs-6 fw-light">
+                <span class="fw-semibold"><%= transaction.email %> </span>
+              </h6>
+              <p class="card-text">
+                NIK : <span><%= transaction.nomor_identitas %></span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+
+      <% } %>
+    </main>
+
+    <footer class="mt-lg-5" style="background-color: #f3f2f0">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 d-grid gap-1 my-4">
+            <h3>Tentang kami</h3>
+            <p>
+              Aplikasi Tiket Wisata Kawasan Borobudur hadir sebagai solusi bagi
+              masyarakat untuk menikmati obyek wisata Candi yang berkawasan di
+              Borobudur dengan kemudahan informasi pemesanan tiket berbasis
+              online.
+            </p>
+          </div>
+          <div class="col-lg-4"></div>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

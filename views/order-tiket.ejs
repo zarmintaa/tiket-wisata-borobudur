@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("partials/head.ejs") %>
+    <title><%= title %></title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!-- Navbar -->
+      <%- include("components/navbar.ejs") %>
+      <!-- Navbar -->
+
+      <!-- Background image -->
+      <div class="container position-relative my-lg-3">
+        <div
+          id="intro-example"
+          class="bg-image rounded-5"
+          style="
+            background-image: linear-gradient(
+                rgba(0, 0, 0, 0.744),
+                rgba(0, 0, 0, 0.621)
+              ),
+              url('./images/banner.png');
+            width: 100%;
+            height: 600px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+          "
+        >
+          <div class="row text-white">
+            <div class="text-center my-5">
+              <h2 class="fw-bold">Tujuan wisata</h2>
+            </div>
+            <div class="col-lg-6">
+              <div class="overflow-hidden rounded-5 mx-5">
+                <img src="<%= getCandi.image %> " class="img-fluid shadow-lg" />
+              </div>
+            </div>
+            <div class="col-lg-6 px-5">
+              <h3><%= getCandi.title %></h3>
+              <p class="text-justify"><%= getCandi.description %></p>
+              <p><%= getCandi.address %></p>
+              <p>Tanggal Kunjungan : <%= hari %></p>
+              <p>Jam Kunjungan : Pukul <%= jam %> WIB</p>
+            </div>
+          </div>
+        </div>
+        <!-- Background image -->
+      </div>
+
+      <div class="container my-lg-4">
+        <div
+          class="rounded-2 bg-danger p-2 text-dark bg-opacity-25 text-center py-4 px-5"
+        >
+          <h2 class="fw-bold text-danger">PERHATIAN</h2>
+          <p class="mx-5">
+            Pengunjung diharapkan datang ke lokasi wisata sesuai jadwal yang
+            tertera pada tiket. Jika jadwal tertera pada tiket pengunjung adalah
+            pukul 08.00 - 11.00, maka tidak bisa discan seblum jam 08.00.
+            Pengunjung yang terlambat datang diharap untuk mengkonfirmasi ke
+            petugas.
+          </p>
+        </div>
+      </div>
+
+      <div class="container">
+        <form class="shadow-lg p-5" action="/create-transcation" method="POST">
+          <div class="row fw-bold">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label mb-3"
+                >Nama Lengkap</label
+              >
+              <input
+                type="text"
+                class="form-control mb-3"
+                id="exampleFormControlInput1"
+                name="name"
+                placeholder="Nama..."
+                required
+              />
+            </div>
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label mb-3"
+                >Nomor Identitas</label
+              >
+              <input
+                type="text"
+                minlength="16"
+                name="no_identitas"
+                maxLength="16"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="Nomor KTP anda..."
+                required
+              />
+            </div>
+          </div>
+          <div class="row fw-bold">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label mb-3"
+                >No. HP</label
+              >
+              <input
+                type="tel"
+                class="form-control mb-3"
+                id="exampleFormControlInput1"
+                name="phone"
+                placeholder="Nomor Hp..."
+                required
+              />
+            </div>
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label mb-3"
+                >Email</label
+              >
+              <input
+                type="email"
+                name="email"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="name@example.com"
+                required
+              />
+            </div>
+          </div>
+          <div class="row fw-bold">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label mb-3"
+                >Pengunjung Dewasa</label
+              >
+              <input
+                type="number"
+                class="form-control mb-3"
+                id="input_dewasa"
+                name="jmlh_dewasa"
+                placeholder="Isikan angka..."
+                required
+              />
+            </div>
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label mb-3"
+                >Pengunjung anak - anak</label
+              >
+              <input
+                type="number"
+                name="jmlh_anak"
+                class="form-control"
+                id="input_anak"
+                placeholder="Isikan angka..."
+                required
+              />
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <label for=""
+              >Harga Tiket :
+              <span id="display_price">Rp.<%= getCandi.price_adult %></span>
+            </label>
+            <label for=""
+              >Total Harga : Rp.<span id="display_total_harga">-</span></label
+            >
+          </div>
+
+          <input
+            type="hidden"
+            name="nama_candi"
+            value="<%= getCandi.title %>"
+          />
+          <input
+            type="hidden"
+            name="harga_anak"
+            value="<%= getCandi.price_kid %>"
+          />
+          <input
+            type="hidden"
+            name="harga_dewasa"
+            value="<%= getCandi.price_adult %>"
+          />
+          <input type="hidden" name="hari" value="<%= hari%>" />
+          <input type="hidden" name="jam" value="<%= jam %>" />
+
+          <div class="mt-3">
+            <button type="submit" class="btn btn-primary">
+              Pesan Tiket Sekarang
+            </button>
+            <button id="cek_harga" type="button" class="btn btn-success">
+              Cek Harga
+            </button>
+            <a href="/"
+              ><button id="cek_harga" type="button" class="btn btn-danger">
+                Cancel
+              </button></a
+            >
+          </div>
+        </form>
+      </div>
+
+      <footer class="mt-lg-5" style="background-color: #f3f2f0">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 d-grid gap-1 my-4">
+              <h3>Tentang kami</h3>
+              <p>
+                Aplikasi Tiket Wisata Kawasan Borobudur hadir sebagai solusi
+                bagi masyarakat untuk menikmati obyek wisata Candi yang
+                berkawasan di Borobudur dengan kemudahan informasi pemesanan
+                tiket berbasis online.
+              </p>
+            </div>
+            <div class="col-lg-4"></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <%- include("partials/foot.ejs") %>
+
+    <script>
+      const input_dewasa = document.getElementById("input_dewasa");
+      const input_anak = document.getElementById("input_anak");
+
+      const display_total_harga = document.getElementById(
+        "display_total_harga"
+      );
+
+      const harga_dewasa = "<%= getCandi.price_adult %>";
+
+      document.getElementById("cek_harga").addEventListener("click", () => {
+        const jmlh_dewasa = input_dewasa.value;
+        const jmlh_anak = input_anak.value;
+
+        if (jmlh_dewasa !== "" && jmlh_anak !== "") {
+          const total_harga =
+            parseInt(jmlh_dewasa) * parseInt(harga_dewasa) +
+            parseInt(jmlh_anak) * parseInt(harga_dewasa);
+          display_total_harga.innerHTML = total_harga;
+        } else {
+          display_total_harga.innerHTML = "-";
+        }
+
+        // const total_harga =
+        //   parseInt(jmlh_dewasa) * parseInt(harga_dewasa) +
+        //   parseInt(jmlh_anak) * parseInt(harga_dewasa);
+
+        // display_total_harga.innerHTML = total_harga;
+      });
+
+      console.log({ harga_dewasa });
+    </script>
+  </body>
+</html>

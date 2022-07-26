@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <%- include("partials/head.ejs") %>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!-- Navbar -->
+      <%- include("components/navbar.ejs") %>
+      <!-- Navbar -->
+
+      <div class="container my-lg-5">
+        <div class="text-center d-grid gap-1 my-5">
+          <h2>Harga Tiket Wisata Candi</h2>
+          <span>Harga tiket setiap objek wisata candi berdasarkan lokasi</span>
+        </div>
+
+        <div class="row">
+          <% listCandi.map(candi => { %>
+          <div class="col-lg-4">
+            <div class="card text-center">
+              <iframe class="image-fluid" height="250"  src="<%= candi.video %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div class="card-body">
+                <h5 class="card-title"><%= candi.title %></h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item fw-bold">Weekdays :</li>
+                <li class="list-group-item">
+                  Dewasa : Rp. <%= +candi.price_adult %>
+                </li>
+                <li class="list-group-item">
+                  Anak-anak : Rp. <%= +candi.price_kid %>
+                </li>
+                <li class="list-group-item fw-bold">Weekend :</li>
+                <li class="list-group-item">
+                  Dewasa : Rp. <%= +candi.price_adult + 5000 %>
+                </li>
+                <li class="list-group-item">
+                  Anak-anak : Rp. <%= +candi.price_kid + 5000 %>
+                </li>
+              </ul>
+              <div class="card-body">
+                <a
+                  href="/"
+                  class="btn btn-primary d-flex align-items-center justify-content-center"
+                  >Pesan</a
+                >
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+
+      <footer class="mt-lg-5" style="background-color: #f3f2f0">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 d-grid gap-1 my-4">
+              <h3>Tentang kami</h3>
+              <p>
+                Aplikasi Tiket Wisata Kawasan Borobudur hadir sebagai solusi
+                bagi masyarakat untuk menikmati obyek wisata Candi yang
+                berkawasan di Borobudur dengan kemudahan informasi pemesanan
+                tiket berbasis online.
+              </p>
+            </div>
+            <div class="col-lg-4"></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <%- include("partials/foot.ejs") %>
+  </body>
+</html>
